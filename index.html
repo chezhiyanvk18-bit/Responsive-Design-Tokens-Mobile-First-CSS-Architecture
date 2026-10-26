@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Responsive Dashboard Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar container">
+    <div class="brand"><span class="brand__dot"></span>ModelWatch</div>
+    <nav class="nav" aria-label="Main">
+      <a class="nav__link" href="#overview">Overview</a>
+      <a class="nav__link" href="#runs">Runs</a>
+      <a class="nav__link" href="#alerts">Alerts</a>
+      <button class="btn" id="theme-toggle" type="button" aria-label="Toggle light or dark theme">Switch theme</button>
+    </nav>
+  </header>
+
+  <main class="container" id="overview">
+    <section class="page-head">
+      <h1>Training overview</h1>
+      <p>Track accuracy, throughput and recent runs for your machine learning models in one view.</p>
+    </section>
+
+    <section class="dashboard">
+      <article class="card card--stat">
+        <p class="card__title">Model accuracy</p>
+        <p class="card__value">94.2%</p>
+        <p class="card__delta card__delta--up">+1.8% this week</p>
+      </article>
+      <article class="card card--stat">
+        <p class="card__title">Training runs</p>
+        <p class="card__value">128</p>
+        <p class="card__delta card__delta--up">+12 this week</p>
+      </article>
+      <article class="card card--stat">
+        <p class="card__title">Inference latency</p>
+        <p class="card__value">38 ms</p>
+        <p class="card__delta card__delta--down">+4 ms this week</p>
+      </article>
+      <article class="card card--stat">
+        <p class="card__title">GPU hours used</p>
+        <p class="card__value">412</p>
+        <p class="card__delta card__delta--up">12% under budget</p>
+      </article>
+
+      <article class="card card--wide">
+        <h2>Accuracy by epoch</h2>
+        <div class="bars" role="img" aria-label="Bar chart of accuracy rising across 12 epochs">
+          <div class="bars__bar" style="height:35%"></div><div class="bars__bar" style="height:48%"></div>
+          <div class="bars__bar" style="height:56%"></div><div class="bars__bar" style="height:63%"></div>
+          <div class="bars__bar" style="height:70%"></div><div class="bars__bar" style="height:74%"></div>
+          <div class="bars__bar" style="height:80%"></div><div class="bars__bar" style="height:84%"></div>
+          <div class="bars__bar" style="height:88%"></div><div class="bars__bar" style="height:91%"></div>
+          <div class="bars__bar" style="height:93%"></div><div class="bars__bar" style="height:95%"></div>
+        </div>
+      </article>
+
+      <article class="card card--tall" id="runs">
+        <h2>Recent runs</h2>
+        <ul class="list">
+          <li class="list__item"><span>resnet50-finetune-v3</span><span class="chip chip--ok">Passed</span></li>
+          <li class="list__item"><span>rag-embedder-small</span><span class="chip">Running</span></li>
+          <li class="list__item"><span>gesture-cnn-lite</span><span class="chip chip--ok">Passed</span></li>
+          <li class="list__item"><span>scheduler-baseline</span><span class="chip chip--warn">Needs review</span></li>
+        </ul>
+      </article>
+
+      <article class="card card--wide" id="alerts">
+        <h2>Alerts</h2>
+        <ul class="list">
+          <li class="list__item"><span>Validation loss rose for 3 epochs on rag-embedder-small</span><span class="chip chip--warn">Warning</span></li>
+          <li class="list__item"><span>Nightly export finished</span><span class="chip chip--ok">Done</span></li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer container">Built with CSS custom properties, Grid and Flexbox.</footer>
+
+  <script>
+    const root = document.documentElement;
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const dark = root.dataset.theme
+        ? root.dataset.theme === 'dark'
+        : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      root.dataset.theme = dark ? 'light' : 'dark';
+    });
+  </script>
+</body>
+</html>
